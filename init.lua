@@ -1,0 +1,6 @@
+require "impatient"
+require "global.vars"
+require "global.settings"
+require "plugins.packer"
+require "lsp"
+-- require "lsp.rust-tools"

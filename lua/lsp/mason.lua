@@ -5,6 +5,7 @@ local servers = {
   "pyright",
   "jsonls",
   "cmake",
+  "gopls",
 }
 -- Linters
 

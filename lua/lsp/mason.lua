@@ -6,6 +6,10 @@ local servers = {
   "jsonls",
   "cmake",
   "gopls",
+  "golangci_lint_ls",
+  "terraformls",
+  "tflint",
+  "helm_ls"
 }
 -- Linters
 

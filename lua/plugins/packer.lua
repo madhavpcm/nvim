@@ -21,6 +21,7 @@ require("packer").startup(function(use)
   use { "wbthomason/packer.nvim" }
   use { "lewis6991/impatient.nvim" }
 
+
   -- Tree Sitter plugins
   use { "windwp/nvim-ts-autotag", after = "nvim-treesitter" }
   use { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" }
@@ -55,12 +56,14 @@ require("packer").startup(function(use)
   use { "williamboman/mason-lspconfig.nvim" }
   use { "MunifTanjim/prettier.nvim", config = 'require("plugins.prettier")' }
   use { "mhartington/formatter.nvim", config = 'require("plugins.formatter")' }
+  use { 'towolf/vim-helm'}
 
   -- Code/Workflow
   --
   -- use { "numToStr/Comment.nvim", config = 'require("plugins.comment")' }
 
-  use { "p00f/cphelper.nvim" }
+  use { "https://github.com/tpope/vim-rhubarb" }
+  use { "https://github.com/tpope/vim-fugitive", config= 'require("plugins.fugitive")', after="vim-rhubarb" }
   use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
   use { "lukas-reineke/indent-blankline.nvim", config = 'require("plugins.indentline")', event = "BufReadPost" }
   use {
@@ -92,7 +95,7 @@ require("packer").startup(function(use)
     config = 'require("plugins.nvim-tree")',
     cmd = "NvimTreeToggle",
   }
-  use { "Mofiqul/vscode.nvim", config = 'require("plugins.color")' }
+  use { "scottmckendry/cyberdream.nvim" , config ='require("plugins.color")'}
   use { "yamatsum/nvim-cursorline", config = 'require("plugins.cursorline")' }
   use {
     "utilyre/barbecue.nvim",

@@ -3,6 +3,10 @@ if not status_ok then
   print "nvim-cmp not found"
   return
 end
+vim.cmd[[
+	let g:indent_blankline_buftype_exclude = ["dashboard", "TelescopePrompt", "terminal", "help"]
+]]
+
 
 local highlight = {
   "RainbowRed",

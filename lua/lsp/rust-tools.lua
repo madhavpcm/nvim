@@ -1,6 +1,6 @@
-local rt = require "rust-tools"
+local rt = require("rust-tools")
 
-rt.setup {
+rt.setup({
 	server = {
 		on_attach = function(_, bufnr)
 			-- Hover actions
@@ -9,4 +9,4 @@ rt.setup {
 			vim.keymap.set("n", "<Leader>la", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
 	},
-}
+})

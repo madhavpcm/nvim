@@ -1,4 +1,4 @@
-require("nvim-cursorline").setup {
+require("nvim-cursorline").setup({
 	cursorline = {
 		enable = true,
 		timeout = 1000,
@@ -9,4 +9,4 @@ require("nvim-cursorline").setup {
 		min_length = 3,
 		hl = { underline = true },
 	},
-}
+})

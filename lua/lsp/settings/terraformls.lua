@@ -4,5 +4,5 @@ return {
 	flags = {
 		debounce_text_changes = 150,
 	},
-	filetypes = { "terraform", "tf" }
+	filetypes = { "terraform", "tf" },
 }

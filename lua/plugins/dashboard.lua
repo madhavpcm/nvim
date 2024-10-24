@@ -1,5 +1,5 @@
-local db = require "dashboard"
-local home = os.getenv "HOME"
+local db = require("dashboard")
+local home = os.getenv("HOME")
 
 db.dashboard_default_executive = "telescope"
 
@@ -16,7 +16,7 @@ db.custom_header = {
 	[[                                ░                  ]],
 }
 
-db.setup {
+db.setup({
 	theme = "hyper",
 	config = {
 		week_header = {
@@ -44,4 +44,4 @@ db.setup {
 			},
 		},
 	},
-}
+})

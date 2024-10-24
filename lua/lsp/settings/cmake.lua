@@ -1,7 +1,7 @@
 return {
-  settings = {
-    CMake = {
-      filetypes = { "cmake", "CMakeLists.txt" },
-    },
-  },
+	settings = {
+		CMake = {
+			filetypes = { "cmake", "CMakeLists.txt" },
+		},
+	},
 }

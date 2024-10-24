@@ -1,18 +1,18 @@
-local util = require 'lspconfig.util'
+local util = require("lspconfig.util")
 
 return {
-  default_config = {
-    cmd = { 'vscode-json-language-server', '--stdio' },
-    filetypes = { 'json', 'jsonc' },
-    init_options = {
-      provideFormatter = true,
-    },
-    root_dir = util.find_git_ancestor,
-    single_file_support = true,
-  },
-  docs = {
-    -- this language server config is in VSCode built-in package.json
-    description = [[
+	default_config = {
+		cmd = { "vscode-json-language-server", "--stdio" },
+		filetypes = { "json", "jsonc" },
+		init_options = {
+			provideFormatter = true,
+		},
+		root_dir = util.find_git_ancestor,
+		single_file_support = true,
+	},
+	docs = {
+		-- this language server config is in VSCode built-in package.json
+		description = [[
 https://github.com/hrsh7th/vscode-langservers-extracted
 
 vscode-json-language-server, a language server for JSON and JSON schema
@@ -34,8 +34,8 @@ require'lspconfig'.jsonls.setup {
 }
 ```
 ]],
-    default_config = {
-      root_dir = [[util.find_git_ancestor]],
-    },
-  },
+		default_config = {
+			root_dir = [[util.find_git_ancestor]],
+		},
+	},
 }

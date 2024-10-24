@@ -25,7 +25,7 @@ local nimbleparse_lsp_attach = function(client, bufnr)
 		end
 		return false
 	end
-	vim.api.nvim_command "au BufRead,BufNewFile nimbleparse.toml set filetype=nimbleparse_toml"
+	vim.api.nvim_command("au BufRead,BufNewFile nimbleparse.toml set filetype=nimbleparse_toml")
 	local config = client["config"]
 	config["filetypes"] = { "nimbleparse_toml", "yacc", "lex" }
 	local filetypes = config["filetypes"]
@@ -33,7 +33,7 @@ local nimbleparse_lsp_attach = function(client, bufnr)
 	for _, folder in pairs(client["workspace_folders"]) do
 		local workspace_path = folder["name"]
 		local handle = io.popen("nimbleparse_lsp --workspace " .. workspace_path)
-		local result = handle:read "*a"
+		local result = handle:read("*a")
 		handle:close()
 		local workspace = vim.json.decode(result)
 		for _, parser in pairs(workspace["parsers"]) do
@@ -53,8 +53,8 @@ local nimbleparse_lsp_attach = function(client, bufnr)
 	require("lsp.handlers").on_attach(client, bufnr)
 end
 
-vim.lsp.set_log_level "info"
-local util = require "lspconfig/util"
+vim.lsp.set_log_level("info")
+local util = require("lspconfig/util")
 local name = "nimbleparse_lsp"
 local cmd = { name, "--server" }
 require("lspconfig.configs")[name] = {
@@ -62,7 +62,7 @@ require("lspconfig.configs")[name] = {
 		autostart = true,
 		cmd = cmd,
 		-- Don't add filetypes here, not adding them causes it to default to a glob pattern.
-		root_dir = util.root_pattern "nimbleparse.toml",
+		root_dir = util.root_pattern("nimbleparse.toml"),
 		settings = {},
 	},
 }

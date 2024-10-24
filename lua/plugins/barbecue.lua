@@ -1,6 +1,6 @@
 ---whether to attach navic to language servers automatically
 ---@type boolean
-require("barbecue").setup {
+require("barbecue").setup({
 	attach_navic = true,
 
 	---whether to create winbar updater autocmd
@@ -81,4 +81,4 @@ require("barbecue").setup {
 		Array = "",
 		Object = "",
 	},
-}
+})

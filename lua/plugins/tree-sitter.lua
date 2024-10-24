@@ -1,5 +1,18 @@
-require("nvim-treesitter").setup {
-	ensure_installed = { "html", "css", "javascript", "c", "cpp", "rust", "lua", "vimdoc", "luadoc", "vim", "lua", "markdown" },
+require("nvim-treesitter").setup({
+	ensure_installed = {
+		"html",
+		"css",
+		"javascript",
+		"c",
+		"cpp",
+		"rust",
+		"lua",
+		"vimdoc",
+		"luadoc",
+		"vim",
+		"lua",
+		"markdown",
+	},
 	auto_install = true,
 	highlight = {
 		enable = true,
@@ -19,4 +32,4 @@ require("nvim-treesitter").setup {
 	autopairs = {
 		enable = true,
 	},
-}
+})

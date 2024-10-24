@@ -11,11 +11,11 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.relativenumber = true
-vim.opt.termguicolors = true 
-vim.opt.formatoptions:remove "o"
+vim.opt.termguicolors = true
+vim.opt.formatoptions:remove("o")
 -- vim.opt.undodir = "~/.cache/nvim/.undo//" --Undo history
 
-vim.opt.spellfile = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
+vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 
 --
 -- Disable netrw
@@ -25,34 +25,35 @@ vim.g.loaded_netrwPlugin = 1
 
 --
 -- Keymaps
--- 
+--
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ww", "<cmd>write<cr>", { desc = "Save" })
 vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle Tree" })
-vim.keymap.set("n", "<leader>_", "5<c-w>-", { desc="Decrease bottom window padding", remap = true, silent = false })
-vim.keymap.set("n", "<leader>+", "5<c-w>+", { desc="Increase bottom window padding", remap = true, silent = false })
-vim.keymap.set("n", "n", "nzzzv", {desc= "Keep cursor centered"})
-vim.keymap.set("n", "N", "Nzzzv", {desc= "Keep cursor centered"})
-vim.keymap.set("n", "<C-u>", "C-u>zz", {desc = "Scroll up and Center"})
-vim.keymap.set("n", "<C-d>", "C-d>zz", {desc = "Scroll up and Center"})
+vim.keymap.set("n", "<leader>_", "5<c-w>-", { desc = "Decrease bottom window padding", remap = true, silent = false })
+vim.keymap.set("n", "<leader>+", "5<c-w>+", { desc = "Increase bottom window padding", remap = true, silent = false })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Keep cursor centered" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Keep cursor centered" })
+vim.keymap.set("n", "<C-u>", "C-u>zz", { desc = "Scroll up and Center" })
+vim.keymap.set("n", "<C-d>", "C-d>zz", { desc = "Scroll up and Center" })
 
 -- Clipboard
 -- <C-c> => copy to global clipboard
 -- y,p,d => copy to vim clipboard
 vim.keymap.set({ "n", "x" }, "x", '"_x')
 vim.keymap.set({ "n", "v", "x" }, "<C-c>", '"+y')
+vim.keymap.set({ "n", "v", "x" }, "<D-c>", '"+y')
 vim.keymap.set({ "n", "v", "x" }, "<C-p>", '"+p')
-vim.keymap.set({ "v" }, "p", '"_dP' )
+vim.keymap.set({ "v" }, "p", '"_dP')
 vim.keymap.set("i", "<c-p>", function()
-  require("telescope.builtin").registers()
+	require("telescope.builtin").registers()
 end, {
-  remap = true,
-  silent = false,
-  desc = " and paste register in insert mode",
+	remap = true,
+	silent = false,
+	desc = " and paste register in insert mode",
 })
 
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true , desc="Unbind space key"})
-vim.keymap.set("n", "<BS>", "^", {desc ="Move to first non blank character"})
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true, desc = "Unbind space key" })
+vim.keymap.set("n", "<BS>", "^", { desc = "Move to first non blank character" })
 
 -- BarBar
 local opts = { noremap = true, silent = true }
@@ -92,40 +93,50 @@ vim.keymap.set("n", "sap", "ggVGp<CR>", { desc = "Select all and paste", nowait 
 vim.keymap.set("n", "se", "vg_<CR>", { desc = "Select till end of line", nowait = true, remap = false })
 vim.keymap.set("n", "ss", ":s/\\v", { silent = false, desc = "search and replace on line" })
 vim.keymap.set("n", "SS", ":%s/\\v", { silent = false, desc = "search and replace in file" })
-vim.keymap.set("v", "<leader><C-s>", ":%s/\\%V", { silent = false, desc = "search and replace in selection using %V atom" })
+vim.keymap.set(
+	"v",
+	"<leader><C-s>",
+	":%s/\\%V",
+	{ silent = false, desc = "search and replace in selection using %V atom" }
+)
 vim.keymap.set("v", "<C-r>", '"hy:%s/\\v<C-r>h//g<left><left>"', { silent = false, desc = "change selection" })
 
+-- Undotree
+vim.cmd([[ 
+	autocmd BufReadPost * call ReadUndo()
+	autocmd BufWritePost * call WriteUndo()
 
--- Undotree 
-vim.cmd[[ 
-	au BufReadPost * call ReadUndo()
-	au BufWritePost * call WriteUndo()
 	func ReadUndo()
-	  if filereadable(expand('%:h') .. '/.undodir/' .. expand('%:t'))
-		rundo %:h/.undodir/%:t
-	  endif
+		let undodir = expand('~/.config/nvim/.undodir') .. expand('%:p:h') 
+		let undofile = undodir .. '/' .. expand('%:t')
+
+		if filereadable(undofile) 
+			rundo ~/.config/nvim/.undodir/%:p:h/%:t
+		endif
 	endfunc
+
 	func WriteUndo()
-	  let dirname = expand('%:h') .. '/.undodir'
-	  if !isdirectory(dirname)
-		call mkdir(dirname)
-	  endif
-	  wundo %:h/.undodir/%:t
+		let undodir = expand('~/.config/nvim/.undodir') .. expand('%:p:h')
+
+		if !isdirectory(undodir)
+			call mkdir(undodir, 'p')
+		endif
+
+		wundo ~/.config/nvim/.undodir/%:p:h/%:t
 	endfunc
-]]
+]])
 
 -- Open directories
-vim.cmd[[
+vim.cmd([[
 	if argc() == 1 && isdirectory(argv(0)) | cd `=argv(0)` | endif
-]]
-
+]])
 
 -- Helm files
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { "*/templates/*.yaml", "*/templates/*.tpl", "*.gotmpl", "helmfile*.yaml" },
-  callback = function()
-    vim.opt_local.filetype = 'helm'
-  end
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*/templates/*.yaml", "*/templates/*.tpl", "*.gotmpl", "helmfile*.yaml" },
+	callback = function()
+		vim.opt_local.filetype = "helm"
+	end,
 })
 
 vim.cmd("colorscheme cyberdream")

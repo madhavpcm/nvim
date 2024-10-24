@@ -5,7 +5,7 @@ return {
 				nilness = true,
 				unusedparams = true,
 				unusedwrite = true,
-				useany = true
+				useany = true,
 			},
 			experimentalPostfixCompletions = true,
 			gofumpt = true,
@@ -21,14 +21,14 @@ return {
 			-- https://github.com/golangci/golangci-lint/issues/741#issuecomment-1488116634
 			usePlaceholders = true,
 			-- hints = {
-				--   assignVariableTypes = true,
-				--   compositeLiteralFields = true,
-				--   compositeLiteralTypes = true,
-				--   constantValues = true,
-				--   functionTypeParameters = true,
-				--   parameterNames = true,
-				--   rangeVariableTypes = true
-				-- }
-			}
-		}
-	}
+			--   assignVariableTypes = true,
+			--   compositeLiteralFields = true,
+			--   compositeLiteralTypes = true,
+			--   constantValues = true,
+			--   functionTypeParameters = true,
+			--   parameterNames = true,
+			--   rangeVariableTypes = true
+			-- }
+		},
+	},
+}

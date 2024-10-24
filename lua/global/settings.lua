@@ -7,15 +7,15 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = false
 vim.opt.wrap = true
 vim.opt.breakindent = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
-vim.opt.formatoptions:remove("o")
+vim.opt.formatoptions:remove "o"
 -- vim.opt.undodir = "~/.cache/nvim/.undo//" --Undo history
 
-vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+vim.opt.spellfile = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 
 --
 -- Disable netrw
@@ -45,11 +45,11 @@ vim.keymap.set({ "n", "v", "x" }, "<D-c>", '"+y')
 vim.keymap.set({ "n", "v", "x" }, "<C-p>", '"+p')
 vim.keymap.set({ "v" }, "p", '"_dP')
 vim.keymap.set("i", "<c-p>", function()
-	require("telescope.builtin").registers()
+  require("telescope.builtin").registers()
 end, {
-	remap = true,
-	silent = false,
-	desc = " and paste register in insert mode",
+  remap = true,
+  silent = false,
+  desc = " and paste register in insert mode",
 })
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true, desc = "Unbind space key" })
@@ -94,15 +94,15 @@ vim.keymap.set("n", "se", "vg_<CR>", { desc = "Select till end of line", nowait 
 vim.keymap.set("n", "ss", ":s/\\v", { silent = false, desc = "search and replace on line" })
 vim.keymap.set("n", "SS", ":%s/\\v", { silent = false, desc = "search and replace in file" })
 vim.keymap.set(
-	"v",
-	"<leader><C-s>",
-	":%s/\\%V",
-	{ silent = false, desc = "search and replace in selection using %V atom" }
+  "v",
+  "<leader><C-s>",
+  ":%s/\\%V",
+  { silent = false, desc = "search and replace in selection using %V atom" }
 )
 vim.keymap.set("v", "<C-r>", '"hy:%s/\\v<C-r>h//g<left><left>"', { silent = false, desc = "change selection" })
 
 -- Undotree
-vim.cmd([[ 
+vim.cmd [[ 
 	autocmd BufReadPost * call ReadUndo()
 	autocmd BufWritePost * call WriteUndo()
 
@@ -124,19 +124,19 @@ vim.cmd([[
 
 		wundo ~/.config/nvim/.undodir/%:p:h/%:t
 	endfunc
-]])
+]]
 
 -- Open directories
-vim.cmd([[
+vim.cmd [[
 	if argc() == 1 && isdirectory(argv(0)) | cd `=argv(0)` | endif
-]])
+]]
 
 -- Helm files
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "*/templates/*.yaml", "*/templates/*.tpl", "*.gotmpl", "helmfile*.yaml" },
-	callback = function()
-		vim.opt_local.filetype = "helm"
-	end,
+  pattern = { "*/templates/*.yaml", "*/templates/*.tpl", "*.gotmpl", "helmfile*.yaml" },
+  callback = function()
+    vim.opt_local.filetype = "helm"
+  end,
 })
 
-vim.cmd("colorscheme cyberdream")
+vim.cmd "colorscheme cyberdream"

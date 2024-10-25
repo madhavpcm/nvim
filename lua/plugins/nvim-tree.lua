@@ -12,7 +12,13 @@ vim.opt.termguicolors = true
 -- empty setup using defaults
 
 -- OR setup with some options
-require("nvim-tree").setup {
+local status_ok, nvim_tree = pcall(require, "nvim-tree")
+if not status_ok then
+  print "nvim-tree not found"
+  return
+end
+
+nvim_tree.setup {
   sort_by = "case_sensitive",
   view = {
     relativenumber = true,

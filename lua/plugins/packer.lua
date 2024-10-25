@@ -28,7 +28,7 @@ require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     event = "BufWinEnter",
-    config = "require('plugins.tree-sitter')",
+    config = "require('plugins.treesitter')",
   }
 
   -- Completions
@@ -49,7 +49,6 @@ require("packer").startup(function(use)
   }
 
   -- LSP/Linters/Formatters
-  --
   use { "neovim/nvim-lspconfig" }
   use { "williamboman/mason.nvim" }
   use { "williamboman/mason-lspconfig.nvim" }
@@ -57,9 +56,9 @@ require("packer").startup(function(use)
   -- use { "mhartington/formatter.nvim", config = 'require("plugins.formatter")' }
   use { "stevearc/conform.nvim", config = 'require("plugins.conform")', event = "BufWritePre" }
   use { "towolf/vim-helm" }
+  use { "mfussenegger/nvim-dap" }
 
   -- Code/Workflow
-  --
   -- use { "numToStr/Comment.nvim", config = 'require("plugins.comment")' }
 
   use { "https://github.com/tpope/vim-rhubarb" }

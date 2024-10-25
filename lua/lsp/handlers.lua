@@ -1,6 +1,6 @@
+-- Common interface for all language servers to neovim
 local M = {}
 
--- TODO: backfill this to template
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -57,9 +57,16 @@ local function lsp_highlight_document(client)
   end
 end
 
+-- Add custom on_attach for each language server here
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
+  end
+  if client.name == "eslint" then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
   end
   lsp_highlight_document(client)
 end
@@ -68,6 +75,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
+  print "cmp_nvim_lsp not found"
   return
 end
 

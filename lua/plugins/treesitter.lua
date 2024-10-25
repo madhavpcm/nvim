@@ -1,4 +1,10 @@
-require("nvim-treesitter").setup {
+local status_ok, nvim_treesitter = pcall(require, "nvim-treesitter")
+if not status_ok then
+  print "nvim-treesitter not found"
+  return
+end
+
+nvim_treesitter.setup {
   ensure_installed = {
     "html",
     "css",

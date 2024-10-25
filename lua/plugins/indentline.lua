@@ -1,6 +1,6 @@
 local status_ok, ibl = pcall(require, "ibl")
 if not status_ok then
-  print "nvim-cmp not found"
+  print "indentblankline (ibl) not found"
   return
 end
 vim.cmd [[
@@ -31,9 +31,6 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 end)
 
 local ibl_config = {
-  scope = {
-    { highlight = highlight },
-  },
   indent = {
     highlight = highlight,
     char = { "|" },

@@ -1,4 +1,10 @@
-require("cyberdream").setup {
+local status_ok, cyberdream = pcall(require, "cyberdream")
+if not status_ok then
+  print "cyberdream not found"
+  return
+end
+
+cyberdream.setup {
   -- Enable transparent background
   transparent = true,
 

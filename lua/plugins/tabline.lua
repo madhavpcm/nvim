@@ -2,7 +2,12 @@
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
 -- Set barbar's options
-require("bufferline").setup {
+local status_ok, bufferline = pcall(require, "bufferline")
+if not status_ok then
+  print "bufferline not found"
+  return
+end
+bufferline.setup {
   -- Enable/disable animations
   animation = true,
 

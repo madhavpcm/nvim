@@ -1,3 +1,9 @@
+local status_ok, barbecue = pcall(require, "barbecue")
+if not status_ok then
+  print "barbecue not found"
+  return
+end
+
 ---whether to attach navic to language servers automatically
 ---@type boolean
 require("barbecue").setup {

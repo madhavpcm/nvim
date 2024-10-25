@@ -4,3 +4,5 @@ if not status_ok then
   print "undotree not installed"
   return
 end
+
+undotree.setup {}

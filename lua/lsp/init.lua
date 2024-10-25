@@ -7,6 +7,7 @@ end
 -- require "lsp.nimbleparse"
 require "lsp.mason"
 require "lsp.rust-tools"
+require "lsp.debugger"
 
 -- require "lsp.efm-config"
 -- require "lsp.efm-langserver".setup()

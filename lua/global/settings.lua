@@ -13,7 +13,6 @@ vim.opt.expandtab = false
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.formatoptions:remove "o"
--- vim.opt.undodir = "~/.cache/nvim/.undo//" --Undo history
 
 vim.opt.spellfile = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 
@@ -126,10 +125,18 @@ vim.cmd [[
 	endfunc
 ]]
 
--- Open directories
+-- Open directories, set title accordingly
 vim.cmd [[
 	if argc() == 1 && isdirectory(argv(0)) | cd `=argv(0)` | endif
 ]]
+vim.o.title = true
+vim.o.titlestring = vim.fn.getcwd()
+vim.api.nvim_create_autocmd("DirChanged", {
+  pattern = "*",
+  callback = function()
+    vim.o.titlestring = vim.fn.getcwd()
+  end,
+})
 
 -- Helm files
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {

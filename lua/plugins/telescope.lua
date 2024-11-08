@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-local actions = telescope.actions
+local actions = require "telescope.actions"
 require("telescope").setup {
   defaults = {
     layout_config = {

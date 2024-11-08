@@ -1,5 +1,1 @@
-return {
-  settings = {
-    packageManager = "npm",
-  },
-}
+return {}

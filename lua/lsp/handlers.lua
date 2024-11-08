@@ -59,6 +59,7 @@ end
 
 -- Add custom on_attach for each language server here
 M.on_attach = function(client, bufnr)
+  print(client.name)
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
   end
@@ -69,6 +70,10 @@ M.on_attach = function(client, bufnr)
     })
   end
   lsp_highlight_document(client)
+end
+
+M.on_init = function(client)
+  client.config.settings.workingDirectory = { directory = client.config.root_dir }
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

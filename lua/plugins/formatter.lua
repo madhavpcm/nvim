@@ -47,26 +47,20 @@ local formatterConfig = {
   },
   cpp = {
     require("formatter.filetypes.cpp").clangformat,
-    function()
-      return {
-        exe = "clang-format",
-        args = {
-          "-assume-filename",
-          util.escape_path(util.get_current_buffer_file_name()),
-          "--style=file:$HOME/.config/nvim/clang-format.conf",
-        },
-        stdin = true,
-        try_node_modules = true,
-      }
-    end,
   },
   cmake = {
     require("formatter.filetypes.cmake").cmakeformat,
+  },
+  python = {
+    require("formatter.filetypes.python").black,
     function()
       return {
-        exe = "cmake-format",
+        exe = "black",
         args = {
-          "-c ~/.config/nvim/cmake-format.yaml",
+          "-q",
+          "--stdin-filename",
+          util.escape_path(util.get_current_buffer_file_name()),
+          "-",
         },
         stdin = true,
       }
@@ -94,7 +88,6 @@ local commonFT = {
   "xml",
   "svg",
   "svelte",
-  "python",
   "py",
   "sh",
 }

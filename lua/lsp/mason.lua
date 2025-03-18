@@ -18,6 +18,7 @@ end
 
 local servers = {
   "lua_ls",
+  "bashls",
   "clangd",
   "rust_analyzer",
   "pyright",

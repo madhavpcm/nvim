@@ -122,4 +122,7 @@ require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = 'require("plugins.lualine")',
   }
+
+  -- AI
+  use { "Exafunction/codeium.vim", config = 'require("plugins.codeium")' }
 end)

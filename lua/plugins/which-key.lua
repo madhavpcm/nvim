@@ -60,10 +60,18 @@ local mappings = {
   -- f
   { "<leader>f", group = "File Ops", nowait = true, remap = false },
   { "<leader>fe", desc = "Edit File", nowait = true, remap = false },
-  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", nowait = true, remap = false },
+  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files in Project", nowait = true, remap = false },
   { "<leader>fn", desc = "New File", nowait = true, remap = false },
-  { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
+  { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Find Recent File", nowait = true, remap = false },
   { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Live Grep", nowait = true, remap = false },
+  { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find Buffers", nowait = true, remap = false },
+  {
+    "<leader>fo",
+    "<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>",
+    desc = "Live Grep",
+    nowait = true,
+    remap = false,
+  },
   -- g
   { "<leader>g", group = "Git Ops", nowait = true, remap = false },
   { "<leader>gbr", "<cmd>GBrowse<cr>", desc = "Git Browse in webui", nowait = true, remap = false },

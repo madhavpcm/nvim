@@ -68,7 +68,7 @@ local mappings = {
   {
     "<leader>fo",
     "<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>",
-    desc = "Live Grep",
+    desc = "Live Grep in Buffers",
     nowait = true,
     remap = false,
   },

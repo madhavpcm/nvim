@@ -36,6 +36,9 @@ local prettierConfig = function()
 end
 
 local formatterConfig = {
+  nix = {
+    require("formatter.filetypes.nix").nixfmt,
+  },
   go = {
     require("formatter.filetypes.go").gofmt,
   },

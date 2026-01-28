@@ -12,6 +12,7 @@ conform.setup {
     python = { "isort", "black" },
     rust = { "rustfmt", lsp_format = "fallback" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
+    nix = { "nixfmt" }
   },
   format_on_save = {
     timeout_ms = 500,

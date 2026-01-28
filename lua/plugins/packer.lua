@@ -83,42 +83,42 @@ require("packer").startup(function(use)
 	}
 	use { "mbbill/undotree", config = 'require("plugins.undotree")' }
 
-	-- Looks and themes
-	use { "nvim-tree/nvim-web-devicons", config = 'require("plugins.devicons")' }
-	use {
-		"romgrk/barbar.nvim",
-		wants = "nvim-web-devicons",
-		config = 'require("plugins.tabline")',
-		event = "BufWinEnter",
-	}
-	use {
-		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = 'require("plugins.nvim-tree")',
-		cmd = "NvimTreeToggle",
-	}
-	use { "scottmckendry/cyberdream.nvim", config = 'require("plugins.color")' }
-	use { "yamatsum/nvim-cursorline", config = 'require("plugins.cursorline")' }
-	use {
-		"utilyre/barbecue.nvim",
-		requires = {
-			"neovim/nvim-lspconfig",
-			"smiteshp/nvim-navic",
-			"kyazdani42/nvim-web-devicons",
-		},
-		wants = "nvim-web-devicons",
-		event = "BufWinEnter",
-		config = "require('plugins.barbecue')",
-	}
-	use {
-		"akinsho/toggleterm.nvim",
-		tag = "*",
-		config = "require('plugins.toggleterm')",
-	}
-	use { "glepnir/dashboard-nvim", event = "VimEnter", config = 'require("plugins.dashboard")' }
-	use {
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		config = 'require("plugins.lualine")',
-	}
+  -- Looks and themes
+  use { "nvim-tree/nvim-web-devicons", config = 'require("plugins.devicons")' }
+  use {
+    "romgrk/barbar.nvim",
+    wants = "nvim-web-devicons",
+    config = 'require("plugins.tabline")',
+    event = "BufWinEnter",
+  }
+  use {
+    "kyazdani42/nvim-tree.lua",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = 'require("plugins.nvim-tree")',
+    cmd = "NvimTreeToggle",
+  }
+  use { "scottmckendry/cyberdream.nvim", config = 'require("plugins.color")' }
+  use { "yamatsum/nvim-cursorline", config = 'require("plugins.cursorline")' }
+  use {
+    "utilyre/barbecue.nvim",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "smiteshp/nvim-navic",
+      "kyazdani42/nvim-web-devicons",
+    },
+    wants = "nvim-web-devicons",
+    event = "BufWinEnter",
+    config = "require('plugins.barbecue')",
+  }
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = "*",
+    config = "require('plugins.toggleterm')",
+  }
+  use { "glepnir/dashboard-nvim", event = "VimEnter", config = 'require("plugins.dashboard")' }
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = 'require("plugins.lualine")',
+  }
 end)

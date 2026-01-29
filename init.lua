@@ -1,5 +1,4 @@
-require "impatient"
 require "global.vars"
 require "global.settings"
-require "plugins.packer"
+require "plugins.lazy"
 require "plugins.lsp"

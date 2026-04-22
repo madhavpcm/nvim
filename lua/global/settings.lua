@@ -101,15 +101,15 @@ vim.keymap.set(
 vim.keymap.set("v", "<C-r>", '"hy:%s/\\v<C-r>h//g<left><left>"', { silent = false, desc = "change selection" })
 
 -- Undotree
-vim.cmd [[ 
+vim.cmd [[
 	autocmd BufReadPost * call ReadUndo()
 	autocmd BufWritePost * call WriteUndo()
 
 	func ReadUndo()
-		let undodir = expand('~/.config/nvim/.undodir') .. expand('%:p:h') 
+		let undodir = expand('~/.config/nvim/.undodir') .. expand('%:p:h')
 		let undofile = undodir .. '/' .. expand('%:t')
 
-		if filereadable(undofile) 
+		if filereadable(undofile)
 			rundo ~/.config/nvim/.undodir/%:p:h/%:t
 		endif
 	endfunc
@@ -146,4 +146,3 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-vim.cmd "colorscheme cyberdream"

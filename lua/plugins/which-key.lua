@@ -7,10 +7,10 @@ end
 wk.setup {
   notify = false,
   plugins = {
-    marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    marks = true,       -- shows a list of your marks on ' and `
+    registers = true,   -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      enabled = true,   -- enabling this will show WhichKey when pressing z= to select spelling suggestions
       suggestions = 20, -- how many suggestions should be shown in the list?
     },
   },
@@ -19,15 +19,35 @@ wk.setup {
 -- Binds with Leader normal mode
 local opts = {
   Gvdiffsplitmode = "n", -- NORMAL mode
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+  buffer = nil,          -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,         -- use `silent` when creating keymaps
+  noremap = true,        -- use `noremap` when creating keymaps
+  nowait = true,         -- use `nowait` when creating keymaps
 }
 
 local mappings = {
+  -- a
+  {
+    { "<leader>a",  nil,                              desc = "AI/Claude Code" },
+    { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
+    { "<leader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
+    { "<leader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
+    { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+    { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+    { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add current buffer" },
+    { "<leader>as", "<cmd>ClaudeCodeSend<cr>",        mode = "v",                  desc = "Send to Claude" },
+    {
+      "<leader>as",
+      "<cmd>ClaudeCodeTreeAdd<cr>",
+      desc = "Add file",
+      ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+    },
+    -- Diff management
+    { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+    { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
+  },
   -- b
-  { "<leader>b", group = "Buffer Commands", nowait = true, remap = false },
+  { "<leader>b",  group = "Buffer Commands", nowait = true,        remap = false },
   {
     "<leader>bb",
     "<Cmd>BufferOrderByBufferNumber<CR>",
@@ -49,7 +69,7 @@ local mappings = {
     nowait = true,
     remap = false,
   },
-  { "<leader>bp", "<Cmd>BufferPick<CR>", desc = "Pick buffer", nowait = true, remap = false },
+  { "<leader>bp", "<Cmd>BufferPick<CR>",     desc = "Pick buffer", nowait = true, remap = false },
   {
     "<leader>bw",
     "<Cmd>BufferOrderByWindowNumber<CR>",
@@ -58,13 +78,13 @@ local mappings = {
     remap = false,
   },
   -- f
-  { "<leader>f", group = "File Ops", nowait = true, remap = false },
-  { "<leader>fe", desc = "Edit File", nowait = true, remap = false },
+  { "<leader>f",  group = "File Ops",              nowait = true,                  remap = false },
+  { "<leader>fe", desc = "Edit File",              nowait = true,                  remap = false },
   { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files in Project", nowait = true, remap = false },
-  { "<leader>fn", desc = "New File", nowait = true, remap = false },
-  { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Find Recent File", nowait = true, remap = false },
-  { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Live Grep", nowait = true, remap = false },
-  { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find Buffers", nowait = true, remap = false },
+  { "<leader>fn", desc = "New File",               nowait = true,                  remap = false },
+  { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Find Recent File",      nowait = true, remap = false },
+  { "<leader>fw", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep",             nowait = true, remap = false },
+  { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Find Buffers",          nowait = true, remap = false },
   {
     "<leader>fo",
     "<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>",
@@ -73,7 +93,7 @@ local mappings = {
     remap = false,
   },
   -- g
-  { "<leader>g", group = "Git Ops", nowait = true, remap = false },
+  { "<leader>g",   group = "Git Ops",  nowait = true,                remap = false },
   { "<leader>gbr", "<cmd>GBrowse<cr>", desc = "Git Browse in webui", nowait = true, remap = false },
   {
     "<leader>gbc",
@@ -86,7 +106,7 @@ local mappings = {
   },
   { "<leader>gd", "<cmd>Gvdiffsplit<cr>", desc = "Git Browse in webui", nowait = true, remap = false },
   -- l
-  { "<leader>l", group = "LSP", nowait = true, remap = false },
+  { "<leader>l",  group = "LSP",          nowait = true,                remap = false },
   {
     "<leader>lD",
     "<cmd>lua vim.lsp.buf.declaration()<cr>",
@@ -94,8 +114,8 @@ local mappings = {
     nowait = true,
     remap = false,
   },
-  { "<leader>lF", ":FormatWrite<cr>", desc = "LSP Format and Write", nowait = true, remap = false },
-  { "<leader>lK", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover Commands", nowait = true, remap = false },
+  { "<leader>lF", ":FormatWrite<cr>",                 desc = "LSP Format and Write", nowait = true, remap = false },
+  { "<leader>lK", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover Commands",       nowait = true, remap = false },
   {
     "<leader>lN",
     "<cmd>lua vim.diagnostic.goto_prev()<cr>",
@@ -103,7 +123,7 @@ local mappings = {
     nowait = true,
     remap = false,
   },
-  { "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
+  { "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>",      desc = "Rename",           nowait = true, remap = false },
   {
     "<leader>lW",
     "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
@@ -111,8 +131,8 @@ local mappings = {
     nowait = true,
     remap = false,
   },
-  { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
-  { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go to Definition", nowait = true, remap = false },
+  { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action",      nowait = true, remap = false },
+  { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>",  desc = "Go to Definition", nowait = true, remap = false },
   {
     "<leader>le",
     "<cmd>lua vim.diagnostic.open_float({scope='line'})<cr>",
@@ -120,8 +140,8 @@ local mappings = {
     nowait = true,
     remap = false,
   },
-  { "<leader>lf", ":Format<cr>", desc = "LSP Format", nowait = true, remap = false },
-  { "<leader>li", ":LspInfo<cr>", desc = "LSP Info", nowait = true, remap = false },
+  { "<leader>lf", ":Format<cr>",  desc = "LSP Format", nowait = true, remap = false },
+  { "<leader>li", ":LspInfo<cr>", desc = "LSP Info",   nowait = true, remap = false },
   {
     "<leader>lk",
     "<cmd>lua vim.lsp.buf.signature_help()<cr>",
@@ -143,7 +163,7 @@ local mappings = {
     nowait = true,
     remap = false,
   },
-  { "<leader>lr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "References", nowait = true, remap = false },
+  { "<leader>lr", "<cmd>lua vim.lsp.buf.references()<cr>",                             desc = "References",            nowait = true, remap = false },
   {
     "<leader>lw",
     "<cmd>lua vim.lsp.remove_workspace_folder()<cr>",
@@ -153,16 +173,16 @@ local mappings = {
   },
   { "<leader>ls", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]] },
   -- p
-  { "<leader>p", group = "Packer", nowait = true, remap = false },
-  { "<leader>pS", ":PackerStatus<cr>", desc = "Packer Status", nowait = true, remap = false },
-  { "<leader>pc", ":PackerCompile profile=true<cr>", desc = "Recompile Plugins", nowait = true, remap = false },
-  { "<leader>pi", ":PackerInstall<cr>", desc = "Install Plugins", nowait = true, remap = false },
-  { "<leader>pp", ":PackerProfile<cr>", desc = "Packer Profile", nowait = true, remap = false },
-  { "<leader>pr", ":PackerClean<cr>", desc = "Remove Unused Plugins", nowait = true, remap = false },
-  { "<leader>ps", ":PackerSync<cr>", desc = "Sync Plugins", nowait = true, remap = false },
-  { "<leader>pu", ":PackerUpdate<cr>", desc = "Update Plugins", nowait = true, remap = false },
+  { "<leader>p",  group = "Packer",                                                    nowait = true,                  remap = false },
+  { "<leader>pS", ":PackerStatus<cr>",                                                 desc = "Packer Status",         nowait = true, remap = false },
+  { "<leader>pc", ":PackerCompile profile=true<cr>",                                   desc = "Recompile Plugins",     nowait = true, remap = false },
+  { "<leader>pi", ":PackerInstall<cr>",                                                desc = "Install Plugins",       nowait = true, remap = false },
+  { "<leader>pp", ":PackerProfile<cr>",                                                desc = "Packer Profile",        nowait = true, remap = false },
+  { "<leader>pr", ":PackerClean<cr>",                                                  desc = "Remove Unused Plugins", nowait = true, remap = false },
+  { "<leader>ps", ":PackerSync<cr>",                                                   desc = "Sync Plugins",          nowait = true, remap = false },
+  { "<leader>pu", ":PackerUpdate<cr>",                                                 desc = "Update Plugins",        nowait = true, remap = false },
   -- t
-  { "<leader>t", group = "Terminal", nowait = true, remap = false },
+  { "<leader>t",  group = "Terminal",                                                  nowait = true,                  remap = false },
   {
     "<leader>th",
     ":ToggleTerm direction=horizontal size=50<cr>",
